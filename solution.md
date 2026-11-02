@@ -1,15 +1,124 @@
-Part 1: Explanatory Paragraph
-When you type a URL into your web browser (the client), it triggers a request-response cycle by sending an HTTP (Hypertext Transfer Protocol) or securely encrypted HTTPS request across the internet to the server where the website lives. For a static website, the server simply responds by sending pre-written HTML, CSS, and JavaScript files directly back to the client. However, if it is a dynamic website, the server first communicates with a database to retrieve specific, up-to-date data (like user profiles or live feeds) and builds the webpage on the fly before sending the final code back. Once the browser receives this response, it translates the code into the visual website that opens on your screen.
+Here is the complete code for your assignment, separated into the HTML structure and the CSS design-token stylesheet.
 
-Part 2: How to get your Screenshot
-To fulfill the second part of your assignment, you'll need to take a screenshot of the Network tab on your own computer. Here is exactly how to do it:
+index.html
+This sample webpage implements the variables across headings, cards, and buttons.
 
-Open Google Chrome and go to any website (e.g., wikipedia.org).
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Tokens Assignment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Design System Showcase</h1>
+  </header>
 
-Right-click anywhere on the page and select Inspect (or press Ctrl + Shift + I on Windows / Cmd + Option + I on Mac).
+  <main class="container">
+    <article class="card">
+      <h2>Standard Card</h2>
+      <p>This card uses the medium spacing and standard text sizes defined in our CSS variables.</p>
+      <button class="btn btn-primary">Primary Action</button>
+    </article>
 
-In the panel that opens, click on the Network tab at the top. (If you don't see it, click the >> arrows to reveal hidden tabs).
+    <article class="card">
+      <h2>Secondary Card</h2>
+      <p>This layout applies the secondary color scheme to demonstrate token flexibility.</p>
+      <button class="btn btn-secondary">Secondary Action</button>
+    </article>
+  </main>
+</body>
+</html>
+style.css
+This stylesheet defines your design system in the :root pseudo-class and applies those tokens to the webpage elements.
 
-With the Network tab open, refresh the page (F5 or Ctrl + R). You will see a waterfall of files (requests) loading in the panel.
+CSS
+/* 1-4. Define CSS variables for colors, spacing, and typography */
+:root {
+  /* Colors */
+  --color-primary: #4F46E5;    /* Indigo */
+  --color-secondary: #10B981;  /* Emerald */
+  --color-bg: #F3F4F6;         /* Light Gray */
+  --color-text: #1F2937;       /* Dark Gray */
+  --color-card-bg: #FFFFFF;    /* White */
 
-Take a screenshot of this entire window showing the list of network requests and save it to submit with your paragraph.
+  /* Spacing */
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+
+  /* Font Sizes */
+  --font-sm: 0.875rem;
+  --font-md: 1rem;
+  --font-lg: 1.5rem;
+  --font-xl: 2rem;
+}
+
+/* 5. Use variables in elements (body, headings, cards, buttons) */
+
+/* Base Styles */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, sans-serif;
+  font-size: var(--font-md);
+  margin: 0;
+  padding: var(--space-lg);
+}
+
+h1 {
+  font-size: var(--font-xl);
+  margin-bottom: var(--space-lg);
+  color: var(--color-primary);
+}
+
+h2 {
+  font-size: var(--font-lg);
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+}
+
+/* Layout */
+.container {
+  display: flex;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+/* Cards */
+.card {
+  background-color: var(--color-card-bg);
+  padding: var(--space-lg);
+  border-radius: var(--space-sm);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+}
+
+.card p {
+  margin-bottom: var(--space-md);
+  font-size: var(--font-md);
+}
+
+/* Buttons */
+.btn {
+  padding: var(--space-md) var(--space-lg);
+  border: none;
+  border-radius: var(--space-sm);
+  font-size: var(--font-md);
+  cursor: pointer;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+}
+To verify Step 6:
+Change the --color-primary variable in your :root block from #4F46E5 to a red hex code like #E11D48. Upon saving and refreshing, you will see both the <h1> text and the Primary Button instantly change to red, confirming that the single token controls multiple elements.
